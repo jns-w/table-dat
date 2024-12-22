@@ -1,0 +1,21 @@
+.transactionStatusTooltipDiv {
+  width: 240px !important;
+  padding: 16px 12px !important;
+
+  .transactionStatusHeader {
+    font-weight: 500;
+    font-size: 15px;
+
+    &.committed {
+      color: var(--success);
+    }
+
+    &.pending {
+      color: var(--warning);
+    }
+
+    &.failed {
+      color: var(--danger);
+    }
+  }
+}

@@ -1,0 +1,44 @@
+@import "@/styles/mixins/media";
+
+.topBarWrapper {
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: var(--card);
+  border-bottom: var(--card-outline) solid 1px;
+
+  @include media(mobile) {
+    display: none;
+  }
+}
+
+.topBarDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--max-width);
+  height: 40px;
+  padding: 0 var(--global-padding);
+  color: var(--text);
+  font-size: 15px;
+
+  @include media(tablet) {
+    font-size: 12.8px;
+  }
+}
+
+.priceTextContainer {
+  font-weight: 600;
+}
+
+.percentageText {
+  &.green {
+    color: var(--success);
+  }
+
+  &.red {
+    color: var(--error)
+  }
+}

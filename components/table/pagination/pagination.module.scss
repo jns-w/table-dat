@@ -1,0 +1,26 @@
+@import "@/styles/mixins/buttons";
+
+.paginationDiv {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  .paginationTextDiv {
+    display: flex;
+    justify-content: center;
+    width: 188px;
+
+    p {
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 120%;
+    }
+  }
+
+  button {
+    @include icon-button;
+
+    color: var(--accent-primary);
+  }
+}

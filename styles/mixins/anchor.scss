@@ -1,0 +1,13 @@
+@mixin anchor($color, $hoverColor) {
+  color: $color;
+  text-decoration: none;
+  transition: color 0.05s ease-out;
+
+  &:hover {
+    color: $hoverColor;
+  }
+}
+
+@mixin anchor-accent {
+  @include anchor(var(--accent-primary), var(--accent-active));
+}

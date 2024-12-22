@@ -1,0 +1,38 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-standard-scss",
+    "stylelint-config-tailwindcss",
+    "stylelint-config-rational-order"
+  ],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-config-rational-order/plugin",
+    "stylelint-scss"
+  ],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": null,
+    "scss/selector-no-redundant-nesting-selector": true,
+    "selector-class-pattern": [
+      "^[a-z][a-zA-Z0-9]+$",
+      {
+        "message": "CSS classes should be in camel case"
+      }
+    ],
+    "selector-id-pattern": [
+      "^[a-z][a-zA-Z0-9]+$",
+      {
+        "message": "CSS ids should be in camel case"
+      }
+    ],
+    "order/properties-order": [],
+    "plugin/rational-order": [
+      true,
+      {
+        "border-in-box-model": false,
+        "empty-line-between-groups": false
+      }
+    ]
+  }
+}

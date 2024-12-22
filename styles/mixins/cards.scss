@@ -1,0 +1,6 @@
+@mixin card-gradient-border {
+    background: linear-gradient(var(--card), var(--card)) padding-box,
+    var(--accent-gradient) border-box;
+    border: transparent 1px solid;
+    border-radius: var(--standard-radius);
+}

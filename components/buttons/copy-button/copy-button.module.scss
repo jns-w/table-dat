@@ -1,0 +1,28 @@
+.copyButton {
+  color: var(--text-mild);
+  cursor: pointer;
+  transition: color 0.2s linear;
+
+  &:hover {
+    color: var(--accent-primary);
+  }
+
+  .copyIcon {
+    display: block;
+  }
+
+  .checkIcon {
+    display: none;
+    color: var(--success)
+  }
+
+  &.showCopied {
+    .copyIcon {
+      display: none;
+    }
+
+    .checkIcon {
+      display: block;
+    }
+  }
+}

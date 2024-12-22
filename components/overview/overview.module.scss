@@ -1,0 +1,144 @@
+@import "@/styles/mixins/media";
+@import "@/styles/mixins/anchor";
+@import "@/styles/mixins/buttons";
+
+.overviewDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  overflow: clip;
+  background: var(--card);
+  border: var(--card-outline) solid 1px;
+  border-radius: var(--standard-radius);
+
+  a {
+    @include anchor-accent;
+
+    font-weight: 500;
+  }
+
+  .overviewGrid {
+    display: grid;
+    grid-template-columns: 1fr  2fr;
+    row-gap: 24px;
+
+    //@include media(medium) {
+    //  grid-template-columns: 1fr 2fr;
+    //}
+    //
+    //@include media(small) {
+    //  grid-template-columns: 1fr 2fr;
+    //}
+
+    @include media(tablet) {
+      grid-template-columns: 1fr;
+      row-gap: 0;
+
+      div:nth-child(2n) {
+        margin-top: 8px;
+        margin-bottom: 24px;
+      }
+
+      div:last-child {
+        margin-bottom: 0;
+      }
+
+      /** constrain length of hashes */
+      .hash {
+        width: 350px;
+      }
+
+      .overviewItemDetail {
+        /** make timestamp 2 rows */
+        &.timestamp {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          align-items: flex-start;
+
+          /** hide divider */
+          span:nth-child(2) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    @include media(mobile) {
+      grid-template-columns: 350px;
+
+      .hash {
+        width: 250px;
+      }
+    }
+
+    @include media(large) {
+      grid-template-columns: 672px 1fr;
+    }
+  }
+
+  .overviewItemLabel {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--text-mild);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 120%;
+  }
+
+  .overviewItemDetail {
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+    font-size: 16px;
+
+    .navigationButton {
+      @include icon-button;
+
+      margin-left: 6px;
+      padding: 2px;
+      color: var(--accent-primary);
+    }
+  }
+}
+
+.overviewLabelTooltip {
+  width: 240px !important;
+}
+
+.statusChip {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  font-weight: 600;
+  font-size: 13px;
+  border: transparent solid 1px;
+  border-radius: var(--standard-radius);
+  
+  &.committed {
+    color: var(--chip-success-text);
+    background: var(--chip-success-bg);
+    border: var(--chip-success-text) solid 1px;
+  }
+
+  &.pending {
+    color: var(--chip-warning-text);
+    background: var(--chip-warning-bg);
+    border: var(--chip-warning-text) solid 1px;
+  }
+
+  &.failed {
+    color: var(--chip-danger-text);
+    background: var(--chip-danger-bg);
+    border: var(--chip-danger-text) solid 1px;
+  }
+}
+
+.overviewDivider {
+  width: 100%;
+  border-top: var(--card-outline) solid 1px;
+}

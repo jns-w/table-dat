@@ -1,0 +1,29 @@
+.statusChip {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  font-weight: 600;
+  font-size: 13px;
+  border: transparent solid 1px;
+  border-radius: var(--standard-radius);
+
+  &.committed {
+    color: var(--chip-success-text);
+    background: var(--chip-success-bg);
+    border: var(--chip-success-text) solid 1px;
+  }
+
+  &.pending {
+    color: var(--chip-warning-text);
+    background: var(--chip-warning-bg);
+    border: var(--chip-warning-text) solid 1px;
+  }
+
+  &.failed {
+    color: var(--chip-danger-text);
+    background: var(--chip-danger-bg);
+    border: var(--chip-danger-text) solid 1px;
+  }
+}

@@ -1,0 +1,126 @@
+@import "@/styles/mixins/media";
+
+.blockDetailsPageDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  width: 100%;
+
+  @include media(tablet) {
+    gap: 12px;
+  }
+}
+
+.blockDetailsTopDiv {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 648px;
+  align-items: center;
+
+  .blockDetailsHeader {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    text-wrap: nowrap;
+  }
+
+  @include media(tablet) {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+  }
+}
+
+.blockDetailsSectionDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .sectionHeader {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+  }
+
+  .transactionsTopDiv {
+    z-index: 5;
+    display: grid;
+    grid-template-columns: 1fr 316px 216px;
+    align-items: center;
+    margin-top: 32px;
+    column-gap: 8px;
+
+    .pagination {
+      display: flex;
+    }
+
+    .pageLimitBtn {
+      display: flex;
+    }
+  }
+
+  @include media(medium) {
+    .transactionsTopDiv {
+      grid-template-columns: 1fr 1fr;
+      row-gap: 8px;
+
+      .pagination {
+        grid-row: 1 / 1;
+        grid-column: 2 / 2;
+        justify-self: flex-end;
+      }
+
+      .pageLimitBtn {
+        grid-row: 2 / 2;
+        grid-column: 2 / 2;
+        justify-self: flex-end;
+      }
+    }
+  }
+
+  @include media(tablet) {
+    gap: 12px;
+
+    .transactionsTopDiv {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 16px;
+
+      h3 {
+        grid-column: 1 / span 2;
+      }
+
+      .pagination {
+        grid-row: 2 / 2;
+        grid-column: 2 / 2;
+        justify-self: flex-end;
+      }
+
+      .pageLimitBtn {
+        grid-row: 3 / 3;
+        grid-column: 2 / 2;
+        justify-self: flex-end;
+      }
+    }
+  }
+
+  @include media(mobile) {
+    .transactionsTopDiv {
+      grid-template-columns: 1fr;
+
+      h3 {
+        grid-column: 1 / 1;
+      }
+
+      .pagination {
+        grid-row: 2 / 2;
+        grid-column: 1 / 1;
+      }
+
+      .pageLimitBtn {
+        grid-row: 3 / 3;
+        grid-column: 1 / 1;
+      }
+    }
+  }
+}

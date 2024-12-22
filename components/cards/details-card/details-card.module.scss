@@ -1,0 +1,130 @@
+@import "@/styles/mixins/anchor";
+@import "@/styles/mixins/buttons";
+
+.detailsDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 32px;
+  overflow: clip;
+  background: var(--card);
+  border-radius: var(--standard-radius);
+  container: details-card-wrapper / inline-size;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px 8px;
+  width: 100%;
+
+  &:last-child {
+    margin-bottom: 10px;
+  }
+
+  @container details-card-wrapper (width <= 856px) {
+    grid-template-columns: 1fr;
+    row-gap: 0;
+  }
+}
+
+.detailRowsDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.detailRow {
+  display: flex;
+  width: 100%;
+}
+
+.detailHeader {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  color: var(--text-mild);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 120%;
+}
+
+.detailLabel {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 50%;
+  color: var(--text-mild);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 120%;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: 300;
+  font-size: 16px;
+
+  .navigationButton {
+    @include icon-button;
+
+    margin-left: 6px;
+    padding: 2px;
+    color: var(--accent-primary);
+  }
+}
+
+.detailsExpandBtn {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-self: flex-end;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 120%;
+
+  .chevron {
+    color: var(--text-mild);
+    transition: transform 0.2s ease-out;
+
+    &.expanded {
+      transform: rotate(180deg);
+    }
+  }
+
+  &:hover {
+    color: var(--accent-primary);
+
+    .chevron {
+      color: var(--accent-primary);
+    }
+  }
+}
+
+.detailsHDivider {
+  width: 100%;
+  margin: 24px 0;
+  border-top: var(--card-outline) solid 1px;
+}
+
+.detailsVDivider {
+  height: 100%;
+  border-left: var(--card-outline) solid 1px;
+}
+
+.bottomFaderDiv {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  height: 15px;
+  background: linear-gradient(to top, var(--card), transparent);
+  pointer-events: none;
+  mask: linear-gradient(to bottom, transparent, black 60%);
+}
+

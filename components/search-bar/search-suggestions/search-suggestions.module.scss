@@ -1,0 +1,155 @@
+@import "@/styles/mixins/media";
+
+.searchSuggestionsDiv {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  padding: 0 8px;
+  overflow: hidden;
+  color: var(--text);
+  background: var(--card);
+  border: var(--card-outline) solid 1px;
+  border-radius: var(--standard-radius);
+  box-shadow: var(--shadow);
+  transform: translateY(6.4px);
+}
+
+.filtersDiv {
+  display: flex;
+  gap: 4px;
+  padding: 8px;
+  overflow-x: auto;
+}
+
+.filter {
+  margin-top: 8px;
+  padding: 3px 10px;
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 15.6px;
+  white-space: nowrap;
+  border: var(--accent-primary) solid 1px;
+  border-radius: 100px;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--text-light);
+    background: var(--accent-primary);
+  }
+
+  &:active {
+    color: var(--accent-mild-contrast);
+    background: var(--accent-mild);
+    border: var(--accent-mild) solid 1px;
+  }
+
+  &.selected {
+    color: var(--text-light);
+    background: var(--accent-active);
+    border: var(--accent-active) solid 1px;
+  }
+}
+
+.suggestionsDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 352px;
+  padding: 8px 0;
+  overflow-y: auto;
+
+  @include media(small) {
+    max-height: 186px;
+  }
+}
+
+.suggestion {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  border-radius: var(--standard-radius);
+  cursor: pointer;
+
+  .suggestionTypeIcon {
+    margin-right: 8px;
+    color: var(--text-mild);
+  }
+
+  .deleteHistoryBtn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    padding: 3px;
+    color: var(--text-mild);
+    border-radius: 100px;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--text);
+      background: var(--transparent-backing);
+    }
+  }
+
+
+  &:hover {
+    color: var(--text-light);
+    background: var(--accent-primary);
+
+    .suggestionTypeIcon {
+      color: var(--text-light);
+    }
+
+    .deleteHistoryBtn {
+      color: var(--text-light);
+    }
+  }
+
+  &:active {
+    color: var(--accent-mild);
+    background: var(--accent-mild-contrast);
+  }
+
+  &.highlighted {
+    color: var(--text-light);
+    background: var(--accent-primary);
+
+    .suggestionTypeIcon {
+      color: var(--text-light);
+    }
+
+    .deleteHistoryBtn {
+      color: var(--text-light);
+    }
+  }
+
+}
+
+.suggestionHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 8px;
+  color: var(--text-mild);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15.6px;
+  border-bottom: var(--card-outline) solid 1px;
+
+  .clearAllHistoryBtn {
+    position: absolute;
+    right: 16px;
+    color: var(--text-mild);
+
+    &:hover {
+      color: var(--accent-primary);
+    }
+  }
+}

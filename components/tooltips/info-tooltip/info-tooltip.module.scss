@@ -1,0 +1,21 @@
+@import "@/styles/mixins/cards";
+
+.infoTooltipDiv {
+  @include card-gradient-border;
+
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  margin: 0 var(--global-padding) 0 var(--global-padding);
+  padding: 8px;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.4px;
+  text-align: left;
+  box-shadow: var(--shadow-sm);
+  cursor: auto;
+  user-select: text;
+}

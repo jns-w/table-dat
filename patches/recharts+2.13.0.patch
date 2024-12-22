@@ -1,0 +1,13 @@
+diff --git a/node_modules/recharts/es6/cartesian/getTicks.js b/node_modules/recharts/es6/cartesian/getTicks.js
+index 3e9a498..b257582 100644
+--- a/node_modules/recharts/es6/cartesian/getTicks.js
++++ b/node_modules/recharts/es6/cartesian/getTicks.js
+@@ -103,7 +103,7 @@ function getTicksStart(sign, boundaries, getTickSize, ticks, minTickGap, preserv
+   }
+   return result;
+ }
+-export function getTicks(props, fontSize, letterSpacing) {
++export function getTicks(props, fontSize="12px", letterSpacing) {
+   var tick = props.tick,
+     ticks = props.ticks,
+     viewBox = props.viewBox,

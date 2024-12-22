@@ -1,0 +1,105 @@
+@import "@/styles/mixins/media";
+
+.bannerWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 176px;
+  background: var(--accent-gradient);
+
+  @include media(mobile) {
+    height: 114px;
+  }
+}
+
+/**
+ * Banner uses grid to control searchbar & advert sizes
+ * Note that respectively, these child components reacts with container queries
+ */
+.bannerDiv {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--max-width);
+  height: 100%;
+  padding: 0 var(--global-padding);
+
+  @include media(medium) {
+    grid-template-columns: 1fr 350px;
+  }
+
+  @include media(small) {
+    grid-template-columns: 1fr 216px;
+  }
+
+  @include media(tablet) {
+    grid-template-columns: 1fr;
+
+    .right {
+      display: none;
+    }
+  }
+
+  @include media(large) {
+    grid-template-columns: 764px 680px;
+  }
+
+  @include media(x-large) {
+    grid-template-columns: 764px 856px;
+  }
+}
+
+.bannerAnnouncementDiv {
+  display: block;
+  width: 360px;
+  height: 128px;
+
+  @include media(medium) {
+    width: 350px;
+  }
+
+  @include media(small) {
+    width: 216px;
+  }
+
+  @include media(tablet) {
+    display: none;
+  }
+
+  @include media(large) {
+    width: 680px;
+  }
+
+  @include media(x-large) {
+    width: 856px;
+  }
+}
+
+.pageAnnouncementWrapper {
+  display: none;
+  justify-content: center;
+  width: 100%;
+
+  @include media(tablet) {
+    display: flex;
+  }
+
+  .pageAnnouncementDiv {
+    display: none;
+    max-width: var(--max-width);
+    height: 128px;
+
+    @include media(tablet) {
+      display: block;
+      width: 416px;
+    }
+
+    @include media(mobile) {
+      display: block;
+      width: 296px;
+    }
+  }
+}

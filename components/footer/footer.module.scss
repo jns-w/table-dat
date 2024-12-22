@@ -1,0 +1,62 @@
+@import "@/styles/mixins/media";
+
+.footerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 80px;
+}
+
+.footerDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--max-width);
+  height: 100%;
+  padding: 0 var(--global-padding);
+  color: var(--text);
+
+  .brandingDiv {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .rightGroup {
+    display: flex;
+    gap: 32px;
+
+    @include media(small) {
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+  }
+
+  .linksDiv {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .socialsDiv {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  @include media(small) {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+
+    .linksDiv {
+      gap: 16px;
+      font-size: 14px;
+    }
+  }
+}

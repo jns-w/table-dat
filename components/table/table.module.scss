@@ -1,0 +1,105 @@
+.tableWrapper {
+  display: block;
+  overflow: auto;
+  border: var(--card-outline) solid 1px;
+  border-radius: var(--standard-radius);
+}
+
+.table {
+  width: 100%;
+  overflow-x: scroll;
+  background: var(--card);
+  border-collapse: separate;
+  border-spacing: 0;
+
+  .tableRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+    background-color: var(--card);
+  }
+
+  th, td {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 20px;
+    white-space: nowrap;
+    text-overflow: clip;
+    background-color: var(--card);
+  }
+
+  th {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  td {
+    font-size: 12.8px;
+  }
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+
+    .headerRow {
+      height: 55px;
+      border-bottom: var(--card-outline) solid 1px;
+    }
+  }
+
+  tfoot {
+    height: 45px;
+
+    .footerRow {
+      align-items: center;
+      justify-content: center;
+      border-top: var(--card-outline) solid 1px;
+    }
+
+    td {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      a {
+        color: var(--text-gray);
+        font-weight: 600;
+
+        &:hover {
+          color: var(--accent-secondary);
+        }
+      }
+    }
+  }
+
+  tbody {
+    color: var(--text-gray);
+
+    tr {
+      border-bottom: var(--card-outline) solid 1px;
+      animation: fade-in ease-out 350ms;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+
+      &:last-child:not(:first-child) {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+}

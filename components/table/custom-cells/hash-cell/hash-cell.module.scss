@@ -1,0 +1,25 @@
+@import "@/styles/mixins/anchor";
+
+.hashCellDiv {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  color: var(--accent-primary);
+
+  a {
+    @include anchor(var(--accent-primary), var(--accent));
+  }
+}
+
+.textWrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.copyButton {
+  cursor: pointer;
+}
+

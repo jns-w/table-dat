@@ -1,0 +1,77 @@
+@import "@/styles/mixins/media";
+
+.searchBarWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  container: search-bar-wrapper / inline-size;
+}
+
+.searchBar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  padding: 4px 8px;
+  font-size: 15px;
+  background: var(--card);
+  border: var(--card-outline) solid 1px;
+  border-radius: 8px;
+
+  @container search-bar-wrapper (width < 580px) {
+    .filterButton {
+      display: none;
+    }
+  }
+}
+
+.searchBarInput {
+  width: 100%;
+  height: 100%;
+  margin-right: 8px;
+  padding: 0 8px;
+  overflow: hidden;
+  color: var(--text);
+  font-weight: 500;
+  text-overflow: ellipsis;
+  background: var(--card);
+  border-radius: var(--standard-radius);
+
+  &::placeholder {
+    color: var(--text-mild);
+  }
+}
+
+.filterButton {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 160px;
+  height: 100%;
+  padding: 8px 16px;
+  color: var(--text-header);
+  font-weight: 500;
+  white-space: nowrap;
+
+  .chevron {
+    transition: transform 0.2s ease-out;
+
+    &.opened {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 100%;
+}

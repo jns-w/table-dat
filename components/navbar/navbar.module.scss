@@ -1,0 +1,118 @@
+@import "@/styles/mixins/media";
+
+.navBarWrapper {
+  position: relative;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 64px;
+  background: var(--card);
+}
+
+.navBarDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--max-width);
+  height: 100%;
+  margin: 0 var(--global-padding);
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  align-items: center;
+  height: 100%;
+  color: var(--text-header);
+  font-weight: 500;
+  font-size: 15px;
+
+  @include media(small) {
+    display: none;
+  }
+
+  .navItem {
+    position: relative;
+    z-index: 8;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    height: 100%;
+    padding: 12px 16px;
+
+    &:hover {
+      color: var(--accent-primary);
+    }
+  }
+
+  .navDropdown {
+    margin-top: 66px;
+  }
+}
+
+.chevron {
+  transition: transform 0.2s ease-out;
+
+  &.opened {
+    transform: rotate(180deg);
+  }
+}
+
+.logo {
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &.shown {
+    display: block;
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.hamburger {
+  z-index: 14;
+  display: none;
+  gap: 3.2px;
+  align-items: center;
+  justify-content: center;
+  padding: 12.8px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out;
+
+  @include media(small) {
+    display: grid;
+  }
+
+  .line {
+    width: 15px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 10px;
+    transition: transform 0.3s ease-out, opacity 0.2s cubic-bezier(.6, .08, .51, 1.31);
+  }
+
+  &.opened {
+    background: var(--accent-mild);
+
+    .line:first-child {
+      background: var(--accent-primary);
+      transform: rotate(45deg) translate(3px, 4px);
+    }
+
+    .line:nth-child(2) {
+      background: var(--accent-primary);
+      opacity: 0;
+    }
+
+    .line:last-child {
+      background: var(--accent-primary);
+      transform: rotate(-45deg) translate(3px, -4px);
+    }
+  }
+}

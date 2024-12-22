@@ -1,0 +1,219 @@
+@import "@/styles/mixins/media";
+@import "@/styles/variables/colors";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+
+  /** Backgrounds -- Gradients -- Base Colors */
+  --bg-base: #{$concrete};
+  --accent-gradient: linear-gradient(160deg, var(--accent-light), var(--accent), var(--accent-secondary));
+  --base-gradient: linear-gradient(180deg, rgb(0 0 0 / 6%), rgb(0 0 0 / 0%));
+  --base-gradient-hover: linear-gradient(180deg, rgb(189 61 231 / 30%), rgb(255 255 255 / 0%));
+  --base-gradient-border: linear-gradient(160deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 0%), rgb(0 0 0 / 0%), rgb(0 0 0 / 35%));
+  --card-gradient-border: linear-gradient(160deg, rgb(0, 0, 0 / 30%), rgb(0, 0, 0 / 0%), rgb(0, 0, 0 / 0%), rgb(0, 0, 0 / 35%));
+  --silver-gradient: linear-gradient(137.95deg, #7A96AC 2.28%, #EAEFF3 19.8%, #C2D4E1 32.94%, #FFF 50.16%, #D4DEE5 62.15%, #ABBDC8 78.69%, #BCCAD7 95.24%);
+  --skeleton: #{$nyctochrome-silver};
+
+  /** Cards -- Outlines -- Backing Colors */
+  --card: #{$stucco};
+  --card-outline: #{$nyctochrome-silver};
+  --chip: #{$nyctochrome-frost};
+  --searchbar-outline: #{$deep-space};
+  --transparent-backing: rgb(160 160 160 / 40%);
+  --dropdown-base: #{$stucco};
+  --chart-line: #D0CCD4;
+  --chart-dot: #{$orchid};
+  --chart-dot-stroke: #120cb5;
+
+  /** Accents -- Status Colors */
+  --accent: #0c69b5;
+  --accent-primary: #{$orchid};
+  --accent-secondary: #002f95;
+  --accent-light: #a7fffc;
+  --accent-mild: #{$iris};
+  --accent-mild-contrast: #{$mulberry};
+  --accent-active: #{$mauve};
+  --disabled: #{$grey-600};
+  --success: #{$success-600};
+  --warning: #{$warning-600};
+  --danger: #{$error-600};
+
+  /** Text -- Content Colors */
+  --text: #{$nyctochrome-sable};
+  --text-light: #{$nyctochrome-frost};
+  --text-header: #{$nyctochrome-obsidian};
+  --text-mild: #{$grey-500};
+  --text-accent: #{$orchid};
+  --text-accent-mild: #{$mulberry};
+  --text-danger: #{$error-600};
+  --icon: #{$nyctochrome-obsidian};
+  --icon-disabled: #{$grey-100};
+  --stats-icon: #{$grey-400};
+
+  /** Chips */
+  --chip-success-text: #{$success-700};
+  --chip-success-bg: #{$success-300};
+  --chip-warning-text: #{$warning-700};
+  --chip-warning-bg: #{$warning-300};
+  --chip-danger-text: #{$error-700};
+  --chip-danger-bg: #{$error-300};
+
+
+  /** Shadows */
+  --shadow: 0 1px 1px hsl(0deg 0% 0% / 3.5%),
+  0 2px 2px hsl(0deg 0% 0% / 2.5%),
+  0 4px 4px hsl(0deg 0% 0% / 1.5%),
+  0 8px 8px hsl(0deg 0% 0% / 4.5%),
+  0 16px 16px hsl(0deg 0% 0% / 4%);
+  --shadow-sm: 0 1px 1px hsl(0deg 0% 0% / 3.5%),
+  0 2px 2px hsl(0deg 0% 0% / 3.5%),
+  0 4px 4px hsl(0deg 0% 0% / 3.5%),
+  0 6px 6px hsl(0deg 0% 0% / 1.5%),
+  0 8px 8px hsl(0deg 0% 0% / 0.5%);
+
+  /** Spacing -- Radius */
+  --max-width: 1128px;
+  --global-padding: 24px;
+  --standard-radius: 8px;
+
+  /**
+   * Media Queries
+   * control max-width of all root divs
+   */
+  @include media(medium) {
+    --max-width: 1128px;
+  }
+
+  @include media(small) {
+    --max-width: 936px;
+  }
+
+  @include media(tablet) {
+    --max-width: 696px;
+  }
+
+  @include media(mobile) {
+    --max-width: 424px;
+    --global-padding: 8px;
+  }
+
+  @include media(mobile-s) {
+    --max-width: 370px;
+    --global-padding: 4px;
+  }
+
+  @include media(mobile-xs) {
+    --max-width: 310px;
+    --global-padding: 3px;
+  }
+
+  @include media(large) {
+    --max-width: 1560px;
+  }
+
+  @include media(x-large) {
+    --max-width: 2088px;
+  }
+}
+
+/**
+ * Dark theme definitions
+ * Note: we do not have to redefine non-theme variables
+ */
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  /** Backgrounds -- Gradients -- Base Colors */
+  --bg-base: #{$deep-space};
+  --accent-gradient: linear-gradient(160deg, var(--accent-light), var(--accent), var(--accent-secondary));
+  --base-gradient: linear-gradient(180deg, rgb(255 255 255 / 20%), rgb(255 255 255 / 0%));
+  --base-gradient-hover: linear-gradient(180deg, rgb(211 5 230 / 20%), rgb(0 15 255 / 0%));
+  --base-gradient-border: linear-gradient(160deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 0%), rgb(0 0 0 / 0%), rgb(0 0 0 / 35%));
+  --card-gradient-border: linear-gradient(160deg, rgb(255, 255, 255 / 50%), rgb(255, 255, 255 / 0%), rgb(255, 255, 255 / 0%), rgb(255, 255, 255 / 54%));
+  --silver-gradient: linear-gradient(137.95deg, #303b44 2.28%, #262626 19.8%, #2a2e31 32.94%, #000000 50.16%, #D4DEE5 62.15%, #ABBDC8 78.69%, #BCCAD7 95.24%);
+  --skeleton: #{$nyctochrome-cinder};
+
+  /** Card -- Outline -- Backing Colors */
+  --card: #{$onyx};
+  --card-outline: #{$nyctochrome-ash};
+  --chip: #{$nyctochrome-obsidian};
+  --searchbar-outline: #{$concrete};
+  --transparent-backing: rgb(160 160 160 / 40%);
+  --dropdown-base: #{$deep-space};
+  --chart-line: #6056a0;
+  --chart-dot: #{$mauve};
+  --chart-dot-stroke: #{$periwinkle};
+
+  /** Accent -- Status Colors */
+  --accent: #0c69b5;
+  --accent-primary: #{$periwinkle};
+  --accent-secondary: #003B95;
+  --accent-light: #FFA7A7;
+  --accent-mild: #{$mulberry};
+  --accent-mild-contrast: #{$nyctochrome-frost};
+  --accent-active: #{$mauve};
+  --disabled: #{$grey-500};
+  --success: #{$success-500};
+  --warning: #{$warning-500};
+  --danger: #{$error-500};
+
+  /** Text -- Content Colors */
+  --text: #{$nyctochrome-frost};
+  --text-header: #{$nyctochrome-silver};
+  --text-mild: #{$grey-300};
+  --text-accent: #{$lilac};
+  --text-accent-mild: #{$iris};
+  --text-light: #{$nyctochrome-frost};
+  --text-danger: #{$error-400};
+  --icon: #{$nyctochrome-silver};
+  --icon-disabled: #{$grey-700};
+  --stats-icon: #{$grey-200};
+
+  /** Chips */
+  --chip-success-text: #{$success-300};
+  --chip-success-bg: #{$success-700};
+  --chip-warning-text: #{$warning-500};
+  --chip-warning-bg: #{$warning-700};
+  --chip-danger-text: #{$error-300};
+  --chip-danger-bg: #{$error-700};
+}
+
+
+body, html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  color: var(--text);
+  background: var(--bg-base);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /** apply permanent scroll to prevent popping */
+  overflow-y: scroll;
+
+  /** Class applied to temporarily disable transitions for whole app while switching theme */
+  &.noTransitions {
+    * {
+      transition: none !important;
+    }
+  }
+
+  /** Class applied to disable scrolling for whole app */
+  &.noScroll {
+    overflow: hidden;
+  }
+}
+
+textarea, input, button {
+  outline: none;
+}

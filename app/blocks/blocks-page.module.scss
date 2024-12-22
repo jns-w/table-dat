@@ -1,0 +1,108 @@
+@import "@/styles/mixins/media";
+@import "@/styles/mixins/anchor";
+
+$block-height-column-width: 135px;
+$block-hash-column-width: 155px;
+
+.blocksTable {
+  a {
+    @include anchor-accent;
+  }
+
+  /** sticky columns - if more than one, we need to add left: firstColumnWidth; */
+  th:first-child, td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    align-self: flex-start;
+    border-right: transparent dashed 1px;
+    transition: border-right .5s ease-in-out, box-shadow .3s ease-in-out;
+
+    /** clip-path is technique used to restrict shadow only on the right */
+    clip-path: inset(0 -15px 0 0);
+  }
+
+
+  thead {
+    position: relative;
+    top: 0;
+    color: var(--text-mild);
+    opacity: 1;
+    transition: box-shadow .3s ease-in-out, opacity .3s ease-out;
+  }
+
+  /** create a right border and shadow on first column when scrolled (note: clip-path above is neccessary) */
+  &.scrolledX {
+    th:nth-child(1), td:nth-child(1) {
+      border-right: var(--card-outline) dashed 1px;
+      box-shadow: 0 0 15px 0 var(--card-outline);
+    }
+  }
+
+  /** set variable for first columns to facilitate sticky columns */
+  .blockHeightColumn {
+    width: $block-height-column-width;
+  }
+
+  .blockHashColumn {
+    width: $block-hash-column-width;
+  }
+
+  .utcColumn {
+    width: 190px;
+  }
+
+  .ageColumn {
+    width: 150px;
+  }
+
+  .proposerColumn {
+    width: $block-hash-column-width;
+  }
+
+  .transactionsColumn {
+    width: 90px;
+
+    a {
+      @include anchor-accent;
+    }
+  }
+
+  .epochRewardColumn {
+    width: 145px;
+  }
+
+  .gasUsedColumn {
+    width: 210px;
+  }
+
+  .baseFeeColumn {
+    width: 110px;
+  }
+
+  .gasFeeBurntColumn {
+    width: 150px;
+  }
+
+  &.stickyHeader {
+    thead {
+      position: sticky;
+
+      /** shadow and clip-path trick to create a bottom only shadow */
+      box-shadow: 0 0 15px 0 var(--card-outline);
+      clip-path: inset(0 0 -15px 0);
+    }
+  }
+
+  &.utcTime {
+    .ageColumn {
+      display: none;
+    }
+  }
+
+  &.ageTime {
+    .utcColumn {
+      display: none;
+    }
+  }
+}

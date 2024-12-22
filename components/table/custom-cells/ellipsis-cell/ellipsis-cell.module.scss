@@ -1,0 +1,30 @@
+@import "@/styles/mixins/anchor";
+
+.ellipsisCell {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &.clickable {
+    @include anchor-accent;
+  }
+
+  /**
+   * this styling maintains fixed length for the back
+   * and provides ellipsis on front text
+   */
+  span {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  span:nth-child(1) {
+    flex-shrink: 1;
+    text-overflow: ellipsis;
+  }
+
+  span:nth-child(2) {
+    flex: 0 0 content;
+  }
+}
