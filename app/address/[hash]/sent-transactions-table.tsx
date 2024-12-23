@@ -1,6 +1,7 @@
 "use client"
 
 import { Table, TableBody, TableBodySkeleton, TableFooter, TableHeader } from "@/components/table/table"
+import { EllipsisCell } from "@/components/table/custom-cells/ellipsis-cell/ellipsis-cell"
 import { HashCell } from "@/components/table/custom-cells/hash-cell/hash-cell"
 import style from "@/app/address/[hash]/address-page.module.scss"
 import { getAPIClient } from "@/utils/api-clients"
@@ -24,20 +25,20 @@ export function SentTransactionsTable() {
 
   const columns = [
     {
-      header: "Transaction hash",
-      width: "160px",
+      className: style.hashCol,
+      header: "Transaction hash"
     },
     {
-      header: "Amount",
-      width: "100px",
+      className: style.amountCol,
+      header: "Amount"
     },
     {
-      header: "Gas used",
-      width: "100px",
+      className: style.gasCol,
+      header: "Gas used"
     },
     {
-      header: "Age",
-      width: "150px",
+      className: style.ageCol,
+      header: "Age"
     },
   ]
 
@@ -63,9 +64,10 @@ export function SentTransactionsTable() {
 
     for (let i = 0; i < data.length; i++) {
       let { amount, gas_consumed, hash, timestamp } = data[i]
-      hash = <HashCell hash={hash} withCopyButton url={`/transaction/${hash}`} />
-      amount = (gweiToETH(amount) + " XPLL") || "-"
+      hash = <HashCell hash={hash} withCopyButton className={style.hashCol} url={`/transaction/${hash}`} shortenHashOptions={{showFirstAndLast: 5}} />
+      amount = (gweiToETH(amount).toFixed(4) + " ETH") || "-"
       timestamp = formatDistanceToNow(timestamp * 1000) + " ago"
+      gas_consumed = gas_consumed + " gas"
       rows.push([hash, amount, gas_consumed, timestamp])
     }
 
@@ -73,7 +75,7 @@ export function SentTransactionsTable() {
   }
 
 
-  return <Table className="min-w-[532px]">
+  return <Table className="w-full">
     <TableHeader columns={[{ header: "Sent transactions" }]} />
     {loading ?
       <TableBodySkeleton rowCount={5} columns={columns} className={style.tableBody} /> :
@@ -83,6 +85,6 @@ export function SentTransactionsTable() {
       <td>No transactions</td>
     </tr>
     </tbody>}
-    <TableFooter> <Link href={`/`}>See more</Link> </TableFooter>
+    <TableFooter className={style.tableFooter}> <Link href={`/`}>See more</Link> </TableFooter>
   </Table>
 }

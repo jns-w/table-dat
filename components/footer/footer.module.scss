@@ -6,6 +6,7 @@
   justify-content: center;
   width: 100%;
   min-height: 80px;
+  padding: 0 var(--global-padding);
 }
 
 .footerDiv {
@@ -15,7 +16,6 @@
   width: 100%;
   max-width: var(--max-width);
   height: 100%;
-  padding: 0 var(--global-padding);
   color: var(--text);
 
   .brandingDiv {

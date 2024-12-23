@@ -1,16 +1,20 @@
 import { ReceivedTransactionsTable } from "@/app/address/[hash]/received-transactions-table"
 import { SentTransactionsTable } from "@/app/address/[hash]/sent-transactions-table"
+
+import style from "./address-page.module.scss"
+
 export default function AddressPage() {
 
-  // return (
-  //   <main className="flex flex-col w-full px-[var(--global-padding)] justify-center items-center h-[calc(100dvh-206px)] text-center">
-  //     page is currently in development, please check back later
-  //   </main>
-  // )
-  return <div className="flex flex-col items-center pt-24 gap-7 min-h-screen">
-    <div className="flex gap-3">
-      <SentTransactionsTable />
-      <ReceivedTransactionsTable />
+  return <main className={style.addressPageMain}>
+    <div
+      className={style.addressDiv}>
+      <div className="flex w-full">
+        <h2>Account Details</h2>
+      </div>
+      <div className={style.tablesGrid}>
+        <SentTransactionsTable />
+        <ReceivedTransactionsTable />
+      </div>
     </div>
-  </div>
+  </main>
 }

@@ -111,9 +111,9 @@ export function TableBody(props: TableBodyProps) {
   </tbody>
 }
 
-export function TableFooter(props: { children: ReactNode }) {
+export function TableFooter(props: { children: ReactNode, className?: string }) {
   return <tfoot>
-  <tr className={clsx(style.footerRow)}>
+  <tr className={clsx(style.footerRow, props.className)}>
     <td>
       {props.children}
     </td>

@@ -17,24 +17,24 @@ export function ReceivedTransactionsTable() {
   const [loading, setLoading] = useState(true)
   const [network] = useAtom(networkAtom)
   const client = getAPIClient(network)
-  const params: {hash: string} = useParams()
+  const params: { hash: string } = useParams()
 
   const columns = [
     {
+      className: style.hashCol,
       header: "Transaction hash",
-      width: "160px",
     },
     {
+      className: style.amountCol,
       header: "Amount",
-      width: "100px",
     },
     {
+      className: style.gasCol,
       header: "Gas used",
-      width: "100px",
     },
     {
+      className: style.ageCol,
       header: "Age",
-      width: "150px",
     },
   ]
 
@@ -44,8 +44,10 @@ export function ReceivedTransactionsTable() {
 
     for (let i = 0; i < data.length; i++) {
       let { amount, gas_consumed, hash, timestamp } = data[i]
-      hash = <HashCell hash={hash} withCopyButton url={`/transaction/${hash}`} />
+      hash = <HashCell hash={hash} withCopyButton url={`/transaction/${hash}`}
+                       shortenHashOptions={{ showFirstAndLast: 5 }} />
       amount = (gweiToETH(amount) + " XPLL") || "-"
+      gas_consumed = gas_consumed + " gas"
       timestamp = formatDistanceToNow(timestamp * 1000) + " ago"
       rows.push([hash, amount, gas_consumed, timestamp])
     }
@@ -73,7 +75,7 @@ export function ReceivedTransactionsTable() {
   }, [params.hash, client, network])
 
 
-  return <Table className="min-w-[532px]">
+  return <Table className="w-full">
     <TableHeader columns={[{ header: "Received transactions" }]} />
     {loading ?
       <TableBodySkeleton rowCount={5} columns={columns} className={style.tableBody} /> :
@@ -84,6 +86,6 @@ export function ReceivedTransactionsTable() {
       <td className="w-full align-center text-center">No transactions</td>
     </tr>
     </tbody>}
-    <TableFooter> <Link href={`/`}>See more</Link> </TableFooter>
+    <TableFooter className={style.tableFooter}> <Link href={`/`}>See more</Link> </TableFooter>
   </Table>
 }
