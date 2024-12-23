@@ -12,7 +12,7 @@ import "./globals.scss"
 const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   description: "Responsive data display site",
-  title: "Table Dat",
+  title: "Ethplorer",
 }
 
 export default function RootLayout({ children }: Readonly<{
