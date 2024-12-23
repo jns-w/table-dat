@@ -217,11 +217,11 @@ export function TransactionsTable() {
       header: <HeaderCell
         header="Transaction Fee"
         tooltipContent={<InfoTooltip className="!w-[240px]">
-          <p>Amount paid in XPLL to process and verify a transaction on the blockchain.
+          <p>Amount paid in ETH to process and verify a transaction on the blockchain.
           </p>
           <br />
           <p>Transaction Fee = </p>
-          <p>(Gas Price * Gas Used by Txn) in XPLL</p>
+          <p>(Gas Price * Gas Used by Txn) in ETH</p>
         </InfoTooltip>}
       />,
     },

@@ -203,7 +203,7 @@ export function BlockOverview(props: BlockOverviewProps) {
         </TooltipButton>
       </div>
       <div className={style.overviewItemDetail}>
-        100 XPLL
+        100 Gwei
       </div>
 
 

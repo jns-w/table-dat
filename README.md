@@ -1,6 +1,6 @@
 # Xplorer
 
-XPLL's web application for exploring the blockchain.
+Web application for exploring the blockchain.
 
 ## Getting Started
 

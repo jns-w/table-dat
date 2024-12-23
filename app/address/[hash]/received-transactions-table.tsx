@@ -46,7 +46,7 @@ export function ReceivedTransactionsTable() {
       let { amount, gas_consumed, hash, timestamp } = data[i]
       hash = <HashCell hash={hash} withCopyButton url={`/transaction/${hash}`}
                        shortenHashOptions={{ showFirstAndLast: 5 }} />
-      amount = (gweiToETH(amount) + " XPLL") || "-"
+      amount = (gweiToETH(amount) + " ETH") || "-"
       gas_consumed = gas_consumed + " gas"
       timestamp = formatDistanceToNow(timestamp * 1000) + " ago"
       rows.push([hash, amount, gas_consumed, timestamp])
