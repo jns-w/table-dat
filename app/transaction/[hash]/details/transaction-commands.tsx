@@ -30,13 +30,13 @@ export function TransactionCommands(props: TransactionCommandsProps) {
           Data Input
         </DetailsCard.Label>
 
-        <DetailsCard.Item className="flex-col gap-[16px] border !items-start">
-          <div className="flex border">
-            <div>From</div>
+        <DetailsCard.Item className="flex-col gap-[16px] !items-start">
+          <div className="flex">
+            <div>From:&nbsp;</div>
             <EllipsisCell string={"GbGANSp_rHqQcc-cR_UZgq-fJZmtag-8lMMUKTKDsw"}/>
           </div>
           <div className="flex">
-            <div>To</div>
+            <div>To:&nbsp;</div>
             <EllipsisCell string={"aADQr9Al2XHcGgPHr76nYZyefXeRoHN98whi49KNyQE"}/>
           </div>
         </DetailsCard.Item>
@@ -55,9 +55,9 @@ export function TransactionCommands(props: TransactionCommandsProps) {
           Data Input
         </DetailsCard.Label>
 
-        <DetailsCard.Item className="flex-col gap-[16px] border !items-start">
-          <div className="flex border">
-            <div>CBI Version</div>
+        <DetailsCard.Item className="flex-col gap-[16px] !items-start">
+          <div className="flex">
+            <div>CBI Version &nbsp;</div>
             <div>0.4.1</div>
           </div>
         </DetailsCard.Item>
