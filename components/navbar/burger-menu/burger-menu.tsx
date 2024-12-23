@@ -85,18 +85,6 @@ export function BurgerMenu(props: BurgerMenuProps) {
           href: "/transactions",
           label: "Transactions",
         },
-        {
-          href: "/top-accounts",
-          label: "Top Accounts",
-        },
-        {
-          href: "/validators",
-          label: "Validators",
-        },
-        {
-          href: "/",
-          label: "Verified Contracts",
-        },
       ],
     },
     {
@@ -113,19 +101,15 @@ export function BurgerMenu(props: BurgerMenuProps) {
       ],
     },
     {
-      href: "/stake",
-      label: "Staking",
-    },
-    {
       label: "Resources",
       subList: [
         {
           href: "/",
-          label: "Xplorer Tutorial",
+          label: "Tutorial",
         },
         {
           href: "/",
-          label: "Tutorial Documentation",
+          label: "Documentation",
         },
       ],
     },
@@ -137,12 +121,6 @@ export function BurgerMenu(props: BurgerMenuProps) {
           icon: <ChevronRight size={20} />,
           label: "Theme",
           mode: theme ? capitalise(theme) : "System Default",
-        },
-        {
-          fn: () => switchMenu("explorer"),
-          icon: <ChevronRight size={20} />,
-          label: "Explorer",
-          mode: network,
         },
       ],
     },
