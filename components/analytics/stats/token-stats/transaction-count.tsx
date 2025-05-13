@@ -18,7 +18,7 @@ export function TransactionCount() {
   const client = getAPIClient(network)
   const [loading, setLoading] = useState(true)
 
-  const [transactionCount, setTransactionCount] = useState<number | undefined>(undefined)
+  const [transactionCount, setTransactionCount] = useState<number | undefined>(39102839)
 
   useEffect(() => {
     async function fetchData() {

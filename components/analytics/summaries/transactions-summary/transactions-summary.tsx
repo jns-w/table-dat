@@ -1,10 +1,11 @@
 "use client"
-import { TransactionStatusTooltip } from "@/components/tooltips/transaction-status-tooltips/transaction-status-tooltip";
+import { TransactionStatusTooltip } from "@/components/tooltips/transaction-status-tooltips/transaction-status-tooltip"
 import { EllipsisCell } from "@/components/table/custom-cells/ellipsis-cell/ellipsis-cell"
 import { SkeletonBlock } from "@/components/skeletons/text-block-skeleton/skeleton-block"
 import { TooltipTrigger } from "@/components/tooltips/tooltip-wrapper/tooltip-trigger"
 import { InfoTooltip } from "@/components/tooltips/info-tooltip/info-tooltip"
 import { useCallback, useEffect, useRef, useState } from "react"
+import { placeholderTransactions } from "@/data/transactions"
 import { Clock4, Eye, XCircle } from "@/components/icons"
 import { formatDistanceToNowStrict } from "date-fns"
 import { getAPIClient } from "@/utils/api-clients"
@@ -50,31 +51,37 @@ export function TransactionsSummary() {
   const APIClient = getAPIClient(network)
 
   const parse = useCallback((data: TransactionsSummaryData): TransactionsSummaryOutput => {
-    if (!data) return []
+    // if (!data) return []
 
     const rows: TransactionsSummaryOutput = []
 
     for (let i = 0; i < data.length; i++) {
       let { amount, gas_consumed, hash, signer, status, timestamp } = data[i]
-      const amountStr = amount === 0 ? "-" : gweiToETH(amount).toString()
-      const timestampStr = formatDistanceToNowStrict(timestamp * 1000) + " ago"
+      // const amountStr = amount === 0 ? "-" : gweiToETH(amount).toString()
+      const amountStr = amount === 0 ? "-" : amount.toFixed(4).toString()
+      const timestampStr = formatDistanceToNowStrict(timestamp, { addSuffix: true })
       rows.push({ amount: amountStr, gas_consumed, hash, signer, status, timestamp: timestampStr })
     }
     return rows
   }, [])
 
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true)
-      await APIClient.getTxsBy([{ param: "latest" }], [], "summary_only", 6, "desc")
-        .then(data => {
-          setData(parse(data as TransactionsSummaryData))
-        }).catch(err => console.log(err))
-      setLoading(false)
-    }
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     setLoading(true)
+  //     await APIClient.getTxsBy([{ param: "latest" }], [], "summary_only", 6, "desc")
+  //       .then(data => {
+  //         setData(parse(data as TransactionsSummaryData))
+  //       }).catch(err => console.log(err))
+  //     setLoading(false)
+  //   }
+  //
+  //   fetchData()
+  // }, [APIClient, network, parse])
 
-    fetchData()
-  }, [APIClient, network, parse])
+  useEffect(() => {
+    setData(parse(placeholderTransactions.slice(0, 6)))
+    setLoading(false)
+  }, [parse])
 
   return <Card className={style.summaryContainer}>
     <h2 className={style.summaryHeader}>Latest Transactions</h2>

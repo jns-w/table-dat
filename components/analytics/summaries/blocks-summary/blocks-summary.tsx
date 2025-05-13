@@ -14,6 +14,7 @@ import { useAtom } from "jotai"
 import Link from "next/link"
 
 import style from "../summaries.module.scss"
+import { placeholderBlocks } from "@/data/blocks"
 
 
 type BlocksSummaryData = {
@@ -53,23 +54,29 @@ export function BlocksSummary() {
     let rows: BlocksSummaryOutput = []
     for (let i = 0; i < data.length; i++) {
       let { base_fee, block_hash, gas_used, height, proposer, timestamp, tx_count } = data[i]
-      const timestampStr = formatDistanceToNow(timestamp * 1000) + " ago"
+      const timestampStr = formatDistanceToNow(timestamp, { addSuffix: true})
       rows.push({ base_fee, block_hash, gas_used, height, proposer, timestamp: timestampStr, tx_count })
     }
     return rows
   }, [])
 
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true)
-      await APIClient.getBlockSummariesBy("latest", "", 6, "desc")
-        .then(data => setData(parse(data)))
-        .catch(err => console.log(err))
-      setLoading(false)
-    }
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     setLoading(true)
+  //     await APIClient.getBlockSummariesBy("latest", "", 6, "desc")
+  //       .then(data => setData(parse(data)))
+  //       .catch(err => console.log(err))
+  //     setLoading(false)
+  //   }
+  //
+  //   fetchData()
+  // }, [APIClient, network, parse])
 
-    fetchData()
-  }, [APIClient, network, parse])
+  useEffect(() => {
+    setLoading(true)
+    setData(parse(placeholderBlocks.slice(0, 6)))
+    setLoading(false)
+  }, [parse])
 
   return <Card className={style.summaryContainer}>
     <h2 className={style.summaryHeader}>Latest Blocks</h2>
