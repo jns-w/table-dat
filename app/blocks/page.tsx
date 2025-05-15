@@ -6,10 +6,9 @@ export default function BlocksPage() {
   return <main className="flex flex-col w-full items-center mt-[48px] mb-[64px] min-h-[calc(100vh-300px)]">
     <div className="w-full max-w-[var(--max-width)] flex justify-center px-[var(--global-padding)]">
       <div className="flex flex-col justify-center gap-10 w-full">
-        <p>This page is currently unavailable</p>
-        {/*<Suspense>*/}
-        {/*  <BlocksTable />*/}
-        {/*</Suspense>*/}
+        <Suspense>
+          <BlocksTable />
+        </Suspense>
       </div>
     </div>
   </main>
