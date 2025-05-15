@@ -4,13 +4,14 @@ import { HashCell } from "@/components/table/custom-cells/hash-cell/hash-cell"
 import style from "@/app/address/[hash]/address-page.module.scss"
 import { getAPIClient } from "@/utils/api-clients"
 import { PublicAddress } from "pchain-types-js"
-import { formatDistanceToNow } from "date-fns"
+import { formatDistanceToNow, formatDistanceToNowStrict } from "date-fns"
 import { gweiToETH } from "@/utils/numbers"
 import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { networkAtom } from "@/jotai/app"
 import { useAtom } from "jotai/index"
 import Link from "next/link"
+import { placeholderTransactions } from "@/data/transactions"
 
 export function ReceivedTransactionsTable() {
   const [rows, setRows] = useState<any>([])
@@ -46,33 +47,39 @@ export function ReceivedTransactionsTable() {
       let { amount, gas_consumed, hash, timestamp } = data[i]
       hash = <HashCell hash={hash} withCopyButton url={`/transaction/${hash}`}
                        shortenHashOptions={{ showFirstAndLast: 5 }} />
-      amount = (gweiToETH(amount) + " ETH") || "-"
-      gas_consumed = gas_consumed + " gas"
-      timestamp = formatDistanceToNow(timestamp * 1000) + " ago"
+      amount = (amount + " ETH") || "-"
+      gas_consumed = gas_consumed/10000 + " gas"
+      timestamp = formatDistanceToNowStrict(timestamp, {addSuffix: true})
       rows.push([hash, amount, gas_consumed, timestamp])
     }
 
     return rows
   }
 
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true)
-      await client.getTxsBy(
-        [{ param: "page_idx", value: 1 }],
-        [{ param: "recipient", value: new PublicAddress(params.hash) }],
-        "summary_only",
-        5,
-        "desc",
-      ).then(data => setRows(defineCells(data)))
-        .catch(err => {
-          console.log(err)
-        })
-      setLoading(false)
-    }
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     setLoading(true)
+  //     await client.getTxsBy(
+  //       [{ param: "page_idx", value: 1 }],
+  //       [{ param: "recipient", value: new PublicAddress(params.hash) }],
+  //       "summary_only",
+  //       5,
+  //       "desc",
+  //     ).then(data => setRows(defineCells(data)))
+  //       .catch(err => {
+  //         console.log(err)
+  //       })
+  //     setLoading(false)
+  //   }
+  //
+  //   fetchData()
+  // }, [params.hash, client, network])
 
-    fetchData()
-  }, [params.hash, client, network])
+  useEffect(() => {
+    setLoading(true)
+    setRows(defineCells(placeholderTransactions.slice(-6, -1)))
+    setLoading(false)
+  }, [])
 
 
   return <Table className="w-full">
