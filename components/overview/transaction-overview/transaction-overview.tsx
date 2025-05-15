@@ -18,6 +18,7 @@ import { useAtom } from "jotai";
 import Link from "next/link";
 
 import style from "../overview.module.scss"
+import { placeholderTransactions } from "@/data/transactions"
 
 type TransactionOverviewProps = {
   hash: string
@@ -34,27 +35,32 @@ export function TransactionOverview(props: TransactionOverviewProps) {
   const [details, setDetails] = useState<any>()
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    /** check if hash or height is provided */
-    async function fetchData() {
-      await client.getTxsBy(
-        [{ param: "tx_hash", value: new Sha256Hash(props.hash) }],
-        [],
-        "summary_only",
-        1,
-        "asc")
-        .then(data => {
-          if (data) setDetails(data[0]);
-          setLoading(false)
-        })
-        .catch(err => {
-          console.log(err)
-          setLoading(false)
-        })
-    }
+  // useEffect(() => {
+  //   /** check if hash or height is provided */
+  //   async function fetchData() {
+  //     await client.getTxsBy(
+  //       [{ param: "tx_hash", value: new Sha256Hash(props.hash) }],
+  //       [],
+  //       "summary_only",
+  //       1,
+  //       "asc")
+  //       .then(data => {
+  //         if (data) setDetails(data[0]);
+  //         setLoading(false)
+  //       })
+  //       .catch(err => {
+  //         console.log(err)
+  //         setLoading(false)
+  //       })
+  //   }
+  //
+  //   fetchData()
+  // }, [client, props.hash])
 
-    fetchData()
-  }, [client, props.hash])
+  useEffect(() => {
+    setDetails(placeholderTransactions[0])
+    setLoading(false)
+  }, [])
 
   if (loading) return <TransactionOverviewSkeleton />
 
@@ -148,11 +154,11 @@ export function TransactionOverview(props: TransactionOverviewProps) {
 
       <div className={cn(style.overviewItemDetail, style.timestamp, "gap-[12px]")}>
         <span>
-          {formatDistanceToNowStrict(details?.timestamp * 1000)} ago
+          {formatDistanceToNowStrict(details?.timestamp, {addSuffix: true})}
         </span>
         <span className="border-r border-[var(--card-outline)] h-full"></span>
         <span
-          className="text-[var(--text-mild)]"> {formatInTimeZone(details?.timestamp * 1000, "UTC", "dd MMMM, yyyy HH:mm:ss")} +UTC
+          className="text-[var(--text-mild)]"> {formatInTimeZone(details?.timestamp, "UTC", "dd MMMM, yyyy HH:mm:ss")} +UTC
         </span>
       </div>
     </div>
@@ -184,7 +190,7 @@ export function TransactionOverview(props: TransactionOverviewProps) {
         </TooltipButton>
       </div>
       <div className={style.overviewItemDetail}>
-        {gweiToETH(details?.amount)} ETH
+        {details?.amount} ETH
       </div>
     </div>
 
@@ -200,7 +206,7 @@ export function TransactionOverview(props: TransactionOverviewProps) {
         </TooltipButton>
       </div>
       <div className={style.overviewItemDetail}>
-        Transfer xx
+        Transfer 1
       </div>
     </div>
 
@@ -216,7 +222,7 @@ export function TransactionOverview(props: TransactionOverviewProps) {
         </TooltipButton>
       </div>
       <div className={style.overviewItemDetail}>
-        {gweiToETH(details?.tx_gas_consumption)} ETH
+        0.3 ETH
       </div>
 
       <div className={style.overviewItemLabel}>
@@ -230,11 +236,11 @@ export function TransactionOverview(props: TransactionOverviewProps) {
         </TooltipButton>
       </div>
       <div className={cn(style.overviewItemDetail, "gap-2")}>
-        {gweiToETH(details?.gas_consumed)} ETH
+        0.025 ETH
         <span className="border-r border-[var(--card-outline)] h-full"></span>
-        Base Fee: {8} Gray / GAS
+        Base Fee: {8} Gwei / GAS
         <span className="border-r border-[var(--card-outline)] h-full"></span>
-        Priority Fee: {0} Gray / GAS
+        Priority Fee: {0} Gwei / GAS
       </div>
 
       <div className={style.overviewItemLabel}>
