@@ -1,9 +1,9 @@
 "use client"
-import { TransactionStatusTooltip } from "@/components/tooltips/transaction-status-tooltips/transaction-status-tooltip";
+import { TransactionStatusTooltip } from "@/components/tooltips/transaction-status-tooltips/transaction-status-tooltip"
 import { HeaderCell } from "@/components/table/custom-headers/header-with-tooltip/header-cell"
 import { GasUsedCell } from "@/components/table/custom-cells/gas-used-cell/gas-used-cell"
 import { PageLimitButton } from "@/components/table/page-limit-button/page-limit-button"
-import { TooltipTrigger } from "@/components/tooltips/tooltip-wrapper/tooltip-trigger";
+import { TooltipTrigger } from "@/components/tooltips/tooltip-wrapper/tooltip-trigger"
 import { HashCell } from "@/components/table/custom-cells/hash-cell/hash-cell"
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react"
 import { InfoTooltip } from "@/components/tooltips/info-tooltip/info-tooltip"
@@ -13,7 +13,8 @@ import { Pagination } from "@/components/table/pagination/pagination"
 import { ChevronsUp, Clock4, Eye, XCircle } from "@/components/icons"
 import { SearchBar } from "@/components/search-bar/search-bar"
 import { useMotionValueEvent, useSpring } from "motion/react"
-import { TooltipButton } from "@/components/buttons";
+import { placeholderTransactions } from "@/data/transactions"
+import { TooltipButton } from "@/components/buttons"
 import { formatDistanceToNowStrict } from "date-fns"
 import { getAPIClient } from "@/utils/api-clients"
 import { Table } from "@/components/table/table"
@@ -249,7 +250,7 @@ export function TransactionsTable() {
           fromBottom
           tabIndex={0}
           allowTooltipHover
-          tooltipContent={<TransactionStatusTooltip status={statusString}/>}>
+          tooltipContent={<TransactionStatusTooltip status={statusString} />}>
           {status === 0 ?
             <Clock4 size={24} strokeWidth={.9} color="var(--warning" /> :
             status === 1 ?
@@ -269,7 +270,7 @@ export function TransactionsTable() {
                          shortenHashOptions={{ showFirstAndLast: 5 }} />
       amount = amount ? gweiToETH(amount).toFixed(3).toString() + " ETH" : "-"
       const utcTime = formatInTimeZone(timestamp * 1000, "UTC", "yyyy-MM-dd HH:mm:ss")
-      const ageTime = formatDistanceToNowStrict(timestamp * 1000) + " ago"
+      const ageTime = formatDistanceToNowStrict(timestamp, { addSuffix: true})
       timestamp = timestamp * 1000
       gas_consumed = gas_consumed ? gweiToETH(gas_consumed) + " " : "-"
       tx_gas_consumption = <GasUsedCell target={800000} gasUsed={tx_gas_consumption} />
@@ -287,20 +288,25 @@ export function TransactionsTable() {
     router.push(`${pathname}?${createQueryString("limit", limit.toString())}`, { scroll: false })
   }
 
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     setLoading(true)
+  //     await client.getTxsBy([{ param: "page_idx", value: parseInt(page) }], [], "summary_only", parseInt(limit), "desc")
+  //       .then(data => {
+  //         setRows(defineCells(data))
+  //       })
+  //       .catch(err => console.log(err))
+  //     setLoading(false)
+  //   }
+  //
+  //   fetchData()
+  // }, [client, network, page, limit])
+
   useEffect(() => {
-    async function fetchData() {
-      setLoading(true)
-      await client.getTxsBy([{ param: "page_idx", value: parseInt(page) }], [], "summary_only", parseInt(limit), "desc")
-        .then(data => {
-          setRows(defineCells(data))
-        })
-        .catch(err => console.log(err))
-      setLoading(false)
-    }
-
-    fetchData()
-  }, [client, network, page, limit])
-
+    setLoading(true)
+    setRows(defineCells(placeholderTransactions))
+    setLoading(false)
+  }, [])
 
   return <>
     <div className={tableTopStyle.tableTopGrid}>

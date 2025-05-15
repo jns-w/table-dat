@@ -6,11 +6,12 @@ import { InfoTooltip } from "@/components/tooltips/info-tooltip/info-tooltip";
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import tableTopStyle from "@/styles/shared/table-top-grid.module.scss"
 import { Pagination } from "@/components/table/pagination/pagination"
-import { useMotionValueEvent, useSpring } from "motion/react"
 import { SearchBar } from "@/components/search-bar/search-bar"
+import { useMotionValueEvent, useSpring } from "motion/react"
 import { useCallback, useEffect, useState } from "react"
 import { formatDistanceToNowStrict } from "date-fns"
 import { getAPIClient } from "@/utils/api-clients"
+import { placeholderBlocks } from "@/data/blocks"
 import { Table } from "@/components/table/table"
 import { ChevronsUp } from "@/components/icons"
 import { useEventListener } from "usehooks-ts"
@@ -289,7 +290,7 @@ export function BlocksTable() {
       proposer = <HashCell withCopyButton hash={proposer} url={`/address/${proposer}`}
                            shortenHashOptions={{ showFirstAndLast: 5 }} />
       const utcTime = formatInTimeZone(timestamp * 1000, "UTC", "yyyy-MM-dd HH:mm:ss")
-      const ageTime = formatDistanceToNowStrict(timestamp * 1000) + " ago"
+      const ageTime = formatDistanceToNowStrict(timestamp, { addSuffix: true })
       timestamp = timestamp * 1000
       tx_count = <Link href="/">3</Link>
       const gas_fee_burnt = <div>{(10 * 20 * 0.8)} Gwei</div>
@@ -309,17 +310,23 @@ export function BlocksTable() {
     router.push(`${pathname}?${createQueryString("limit", limit.toString())}`, { scroll: false })
   }
 
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true)
-      await client.getBlockSummariesBy("latest", "", limit, "desc")
-        .then(data => setRows(defineCells(data)))
-        .catch(err => console.log(err))
-      setLoading(false)
-    }
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     setLoading(true)
+  //     await client.getBlockSummariesBy("latest", "", limit, "desc")
+  //       .then(data => setRows(defineCells(data)))
+  //       .catch(err => console.log(err))
+  //     setLoading(false)
+  //   }
+  //
+  //   fetchData()
+  // }, [client, network, limit])
 
-    fetchData()
-  }, [client, network, limit])
+  useEffect(() => {
+    setLoading(true)
+    setRows(defineCells(placeholderBlocks))
+    setLoading(false)
+  }, [])
 
 
   return <>
