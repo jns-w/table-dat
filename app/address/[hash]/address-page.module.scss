@@ -30,7 +30,7 @@
 .tablesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 8px;
   width: 100%;
 
   @include media(medium) {
@@ -48,11 +48,11 @@
   }
 
   .amountCol {
-    width: 150px;
+    width: 140px;
   }
 
   .gasCol {
-    width: 110px;
+    width: 100px;
   }
 
   .ageCol {
