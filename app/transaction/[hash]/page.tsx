@@ -20,20 +20,20 @@ export default function TransactionPage() {
   const [network] = useAtom(networkAtom)
   const client = getAPIClient(network)
 
-  useEffect(() => {
-    async function fetchData() {
-      await client.getTxsBy(
-        [{ param: "tx_hash", value: new Sha256Hash(params.hash) }],
-        [],
-        "summary_only",
-        1,
-        "asc")
-        .then(res => res && console.log(res[0]))
-        .catch(err => console.log(err))
-    }
-
-    fetchData()
-  }, [params.hash, network, client])
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     await client.getTxsBy(
+  //       [{ param: "tx_hash", value: new Sha256Hash(params.hash) }],
+  //       [],
+  //       "summary_only",
+  //       1,
+  //       "asc")
+  //       .then(res => res && console.log(res[0]))
+  //       .catch(err => console.log(err))
+  //   }
+  //
+  //   fetchData()
+  // }, [params.hash, network, client])
 
   return <main className="flex flex-col w-full items-center mt-[48px] mb-[64px]">
     <div className="w-full max-w-[var(--max-width)] flex justify-center px-[var(--global-padding)]">
