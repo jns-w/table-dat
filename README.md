@@ -1,4 +1,4 @@
-# Xplorer
+# Table Dat
 
 Web application for exploring the blockchain.
 
