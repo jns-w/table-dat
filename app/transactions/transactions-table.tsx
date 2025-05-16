@@ -268,10 +268,9 @@ export function TransactionsTable() {
                              shortenHashOptions={{ showFirstAndLast: 5 }} />
       signer = <HashCell hash={signer} withCopyButton url={`/address/${signer}`}
                          shortenHashOptions={{ showFirstAndLast: 5 }} />
-      amount = amount ? gweiToETH(amount).toFixed(3).toString() + " ETH" : "-"
-      const utcTime = formatInTimeZone(timestamp * 1000, "UTC", "yyyy-MM-dd HH:mm:ss")
+      amount = amount ? amount.toFixed(3).toString() + " ETH" : "-"
+      const utcTime = formatInTimeZone(timestamp, "UTC", "yyyy-MM-dd HH:mm:ss")
       const ageTime = formatDistanceToNowStrict(timestamp, { addSuffix: true})
-      timestamp = timestamp * 1000
       gas_consumed = gas_consumed ? gweiToETH(gas_consumed) + " " : "-"
       tx_gas_consumption = <GasUsedCell target={800000} gasUsed={tx_gas_consumption} />
       definedRows.push([hash, commands, block_hash, utcTime, ageTime, signer, amount, gas_consumed])

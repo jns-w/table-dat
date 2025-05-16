@@ -289,9 +289,8 @@ export function BlocksTable() {
                   shortenHashOptions={{ showFirstAndLast: 5 }} />
       proposer = <HashCell withCopyButton hash={proposer} url={`/address/${proposer}`}
                            shortenHashOptions={{ showFirstAndLast: 5 }} />
-      const utcTime = formatInTimeZone(timestamp * 1000, "UTC", "yyyy-MM-dd HH:mm:ss")
+      const utcTime = formatInTimeZone(timestamp, "UTC", "yyyy-MM-dd HH:mm:ss")
       const ageTime = formatDistanceToNowStrict(timestamp, { addSuffix: true })
-      timestamp = timestamp * 1000
       tx_count = <Link href="/">3</Link>
       const gas_fee_burnt = <div>{(10 * 20 * 0.8)} Gwei</div>
       const epoch_reward = <div>5 ETH</div>
