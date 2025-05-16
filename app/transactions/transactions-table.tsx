@@ -252,7 +252,7 @@ export function TransactionsTable() {
           allowTooltipHover
           tooltipContent={<TransactionStatusTooltip status={statusString} />}>
           {status === 0 ?
-            <Clock4 size={24} strokeWidth={.9} color="var(--warning" /> :
+            <Clock4 size={24} strokeWidth={.9} color="var(--warning)" /> :
             status === 1 ?
               <Eye size={24} strokeWidth={.9} /> :
               <XCircle size={24} strokeWidth={.9} color="var(--danger)" />
