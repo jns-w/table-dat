@@ -16,7 +16,7 @@ type Notification = {
 //   }
 // })
 
-export const themeUserPreferenceAtom = atomWithStorage<"dark" | "light" | undefined>("xplorer.theme", undefined)
+export const themeUserPreferenceAtom = atomWithStorage<"dark" | "light" | undefined>("td.theme", undefined)
 
 export const notificationAtom = atom<Notification>({
   description: undefined,

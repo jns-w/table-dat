@@ -6,6 +6,6 @@ type ViewingOptions = {
   timeOption: "age" | "utc"
 }
 
-export const networkAtom = atomWithStorage<Network>("xplorer.network", "Mainnet")
+export const networkAtom = atomWithStorage<Network>("td.network", "Mainnet")
 
-export const viewingOptionsAtom = atomWithStorage<undefined | ViewingOptions>("xplorer.viewingOptions", undefined)
+export const viewingOptionsAtom = atomWithStorage<undefined | ViewingOptions>("td.viewingOptions", undefined)
