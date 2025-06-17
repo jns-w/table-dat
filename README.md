@@ -45,23 +45,6 @@ and dark theme in there. We use the data-theme attribute on the html
 element to switch between light and dark modes. Always search for hex values in the file to reuse colors before adding
 new ones into the stylesheet.
 
-### Tailwind & Sass the Balancing Act
-
-Tailwind is great for it's one lining and convenience of use. However, for many aspects of styling like responsive
-design
-and reusablility it starts to fall short. This project aims to use the best of both worlds of Tailwind & CSS. Tailwind
-can and should be used
-for plain
-simple elements, typically one-offs and static items, think wrapper divs with just `flex justify-center` we do not want
-these short classes to overpopulate our CSS files. Whereas we use Sass for complex responsive and/or highly reusable
-styling declarations.
-
-A good rule of thumb is to use Tailwind for up to _max of 6 classes_ per element. If you find yourself using more than 6
-classes or
-repeating
-yourself, consider
-using CSS definitions instead. Avoid large paragraphs of repeated Tailwind classes.
-
 ### Use "px" for styling
 
 Why use "px" when "rem" is considered best practice? This project uses postcss-pxtorem plugin to convert all px to rem
